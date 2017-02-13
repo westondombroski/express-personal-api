@@ -43,18 +43,59 @@ app.get('/', function homepage(req, res) {
  */
 
 app.get('/api', function apiIndex(req, res) {
-  // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
-  // It would be seriously overkill to save any of this to your database.
+//simple hard-coded JSON object of API endpoints
   res.json({
-    woopsIForgotToDocumentAllMyEndpoints: true, // CHANGE ME ;)
-    message: "Welcome to my personal api! Here's what you need to know!",
-    documentationUrl: "https://github.com/example-username/express_self_api/README.md", // CHANGE ME
-    baseUrl: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
+    message: "hello and welcome to weston's jazz drummers api",
+    documentationUrl: "https://github.com/westondombroski/express-personal-api/README.md",
+    baseUrl: "https://calm-scrubland-61487.herokuapp.com",
     endpoints: [
-      {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {method: "GET", path: "/api", description: "all available endpoints"},
+      {method: "GET", path: "/api/profile", description: "data about me"},
+      {method: "GET", path: "/api/drummers", description: "my top jazz drumming influences"},
+      {method: "GET", path: "/api/drummers/:id", description: "find a drummer by id"},
+      {method: "POST", path: "/api/drummers", description: "add a drummer"},
+      {method: "PUT", path: "/api/drummers/:id", description: "edit/update a drummer"},
+      {method: "DELETE", path: "/api/drummers/:id", description: "delete a drummer"}
     ]
+  })
+});
+
+app.get('/api/profile', function apiProfile(req, res){
+  res.json({
+    name: "weston dombroski",
+    githubLink: "https://github.com/westondombroski",
+    personalSiteLink: "https://westondombroski.github.io",
+    currentCity: "San Francisco",
+    pets: [{name: "Bodhisattva", type: "cat", disposition: "tortitude" }]
+  })
+});
+
+app.get('/api/drummers', function findAllDrummers(req, res){
+  res.json({
+  })
+});
+
+app.get('/api/drummers/:id', function findDrummerById(req, res){
+  res.json({
+
+  })
+});
+
+app.post('/api/drummers', function addDrummer(req, res){
+  res.json({
+
+  })
+});
+
+app.put('/api/drummers/:id', function updateDrummer(req, res){
+  res.json({
+
+  })
+});
+
+app.delete('/api/drummers/:id', function deleteDrummer(req, res){
+  res.json({
+
   })
 });
 
