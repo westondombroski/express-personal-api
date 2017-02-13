@@ -60,6 +60,7 @@ app.get('/api', function apiIndex(req, res) {
   })
 });
 
+//get profile
 app.get('/api/profile', function apiProfile(req, res){
   res.json({
     name: "weston dombroski",
@@ -70,23 +71,31 @@ app.get('/api/profile', function apiProfile(req, res){
   })
 });
 
+//get all drummers
 app.get('/api/drummers', function findAllDrummers(req, res){
   db.Drummer.find({})
-    .exec(function(err, drummers){
-      if (err) {
-        res.status(500).send(err);
-        return;
-      }
-      res.json(drummers);
-    });
+  .exec(function(err, drummers){
+    if (err) {
+      res.status(500).send(err);
+      return;
+    }
+    res.json(drummers);
+  });
 });
 
+//get drummer by id
 app.get('/api/drummers/:id', function findDrummerById(req, res){
-  res.json({
-
-  })
+  db.Drummer.findById(req.params.id)
+  .exec(function(err, drummer){
+    if (err) {
+      res.status(500).send(err);
+      return;
+    }
+    res.json(drummer);
+  });
 });
 
+//post new drummer
 app.post('/api/drummers', function addDrummer(req, res){
   var newDrummer = new db.Drummer({
     name: req.body.name,
@@ -119,7 +128,7 @@ app.delete('/api/drummers/:id', function deleteDrummer(req, res) {
 
   db.Drummer.findOneAndRemove({ id: drummerId }, function(err, deletedDrummer){
     res.json(deletedDrummer);
-  })
+  });
 });
 
 /**********
