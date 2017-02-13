@@ -20,3 +20,7 @@ form {
 .drummers {
   margin-left: 38px
 }
+
+.left {
+  float: left
+}

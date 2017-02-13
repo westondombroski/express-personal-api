@@ -33,3 +33,13 @@ $(document).ready( function(){
     alert("Sorry, there was a problem!");
     console.dir(xhr);
   }
+
+
+  // $(".DELETE").on("click", function(e) {
+  //   this.drummer._id.remove(function (err, product) {
+  //     if (err) return handleError(err);
+  //     this.drummer.findById(drummers._id, function (err, product) {
+  //       console.log(product) // null
+  //     })
+  //   })
+  // });

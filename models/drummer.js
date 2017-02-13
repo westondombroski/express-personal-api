@@ -2,9 +2,9 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var DrummerSchema = new Schema({
-  name: String,
+  name: String || "new drummer",
   rank: Number,
-  image: String,
+  image: String || "/images/baby.jpg",
   life: String,
   url: String,
   isAlive: Boolean

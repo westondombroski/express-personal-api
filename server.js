@@ -117,11 +117,11 @@ app.post('/api/drummers', function addDrummer(req, res){
   });
 });
 
-app.put('/api/drummers/:id', function updateDrummer(req, res){
-  res.json({
-
-  })
-});
+// app.put('/api/drummers/:id', function updateDrummer(req, res){
+//   res.json({
+//
+//   })
+// });
 
 app.delete('/api/drummers/:id', function deleteDrummer(req, res) {
   var drummerId = req.params.id;
