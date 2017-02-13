@@ -50,7 +50,6 @@ db.Drummer.create(drummers_list, function(err, drummers){
   if (err){
     return console.log("Error:", err);
   }
-
   console.log("Created data")
-  process.exit(); // we're all done! Exit the program.
-})
+  process.exit();
+});

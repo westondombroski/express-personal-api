@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
  * DATABASE *
  ************/
 
-// var db = require('./models');
+var db = require('./models');
 
 /**********
  * ROUTES *
@@ -71,8 +71,14 @@ app.get('/api/profile', function apiProfile(req, res){
 });
 
 app.get('/api/drummers', function findAllDrummers(req, res){
-  res.json({
-  })
+  db.Drummer.find({})
+    .exec(function(err, drummers){
+      if (err) {
+        res.status(500).send(err);
+        return;
+      }
+      res.json(drummers);
+    });
 });
 
 app.get('/api/drummers/:id', function findDrummerById(req, res){
@@ -82,9 +88,24 @@ app.get('/api/drummers/:id', function findDrummerById(req, res){
 });
 
 app.post('/api/drummers', function addDrummer(req, res){
-  res.json({
+  var newDrummer = new db.Drummer({
+    name: req.body.name,
+    rank: req.body.rank,
+    image: req.body.image,
+    life: req.body.life,
+    url: req.body.url,
+    isAlive: req.body.isAlive
+  });
 
-  })
+  newDrummer.save(function(err, drummer){
+    if (err) {
+      return console.log("save error:" + err);
+    }
+
+    console.log("saved", drummer.name);
+
+    res.json(drummer);
+  });
 });
 
 app.put('/api/drummers/:id', function updateDrummer(req, res){
@@ -93,9 +114,11 @@ app.put('/api/drummers/:id', function updateDrummer(req, res){
   })
 });
 
-app.delete('/api/drummers/:id', function deleteDrummer(req, res){
-  res.json({
+app.delete('/api/drummers/:id', function deleteDrummer(req, res) {
+  var drummerId = req.params.id;
 
+  db.Drummer.findOneAndRemove({ id: drummerId }, function(err, deletedDrummer){
+    res.json(deletedDrummer);
   })
 });
 
